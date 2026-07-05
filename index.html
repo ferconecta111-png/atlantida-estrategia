@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Estrategia de Contenido — ATLÁNTIDA LODGE</title>
+  <style>
+    :root {
+      --teal: #0d9488;
+      --teal-dark: #0f766e;
+      --teal-light: #ccfbf1;
+      --arena: #d4a843;
+      --arena-light: #fef9c3;
+      --selva: #15803d;
+      --selva-light: #dcfce7;
+      --coral: #e11d48;
+      --coral-light: #ffe4e6;
+      --cielo: #0369a1;
+      --cielo-light: #e0f2fe;
+      --gris: #f1f5f9;
+      --gris-dark: #64748b;
+      --text: #1e293b;
+      --white: #ffffff;
+      --border: #e2e8f0;
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #f0f9f8;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #0f4c3a 0%, #0d9488 45%, #0891b2 100%);
+      color: white;
+      padding: 40px 48px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '🌴🌊🦥🐠🦜🌺';
+      position: absolute;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 48px;
+      opacity: 0.15;
+      letter-spacing: 8px;
+    }
+    .header h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
+    .header h1 span { color: #6ee7b7; }
+    .header .subtitle { font-size: 15px; opacity: 0.85; margin-top: 4px; }
+    .header-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+    .tag {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      backdrop-filter: blur(4px);
+    }
+    .tag.green { background: #15803d; border-color: #15803d; }
+    .tag.gold { background: #b45309; border-color: #b45309; }
+    .tag.coral { background: #be123c; border-color: #be123c; }
+
+    /* LAYOUT */
+    .container { max-width: 1400px; margin: 0 auto; padding: 32px 24px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; }
+
+    /* CARDS */
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .card-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--gris-dark);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--teal-dark);
+      margin: 32px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--teal-light);
+    }
+
+    /* STATS */
+    .stat-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 20px 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .stat-num { font-size: 36px; font-weight: 800; color: var(--teal); line-height: 1; }
+    .stat-num.gold { color: var(--arena); }
+    .stat-num.green { color: var(--selva); }
+    .stat-num.blue { color: var(--cielo); }
+    .stat-label { font-size: 13px; color: var(--gris-dark); font-weight: 500; margin-top: 4px; }
+    .stat-sub { font-size: 11px; color: #94a3b8; margin-top: 4px; }
+
+    /* BRAND ROW */
+    .brand-row { display: flex; gap: 12px; margin-bottom: 12px; }
+    .brand-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .brand-info strong { display: block; font-size: 13px; color: var(--text); }
+    .brand-info span { font-size: 12px; color: var(--gris-dark); }
+
+    /* PILLARS */
+    .pillar { border-radius: 14px; padding: 20px; border: 2px solid; }
+    .pillar.p1 { background: #f0fdfa; border-color: #5eead4; }
+    .pillar.p2 { background: #fefce8; border-color: #fde047; }
+    .pillar.p3 { background: #f0fdf4; border-color: #86efac; }
+    .pillar.p4 { background: #fff1f2; border-color: #fda4af; }
+    .pillar-icon { font-size: 28px; margin-bottom: 8px; }
+    .pillar-name { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+    .pillar.p1 .pillar-name { color: #0f766e; }
+    .pillar.p2 .pillar-name { color: #a16207; }
+    .pillar.p3 .pillar-name { color: #15803d; }
+    .pillar.p4 .pillar-name { color: #be123c; }
+    .pillar-pct { font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+    .pillar.p1 .pillar-pct { color: #0f766e; }
+    .pillar.p2 .pillar-pct { color: #a16207; }
+    .pillar.p3 .pillar-pct { color: #15803d; }
+    .pillar.p4 .pillar-pct { color: #be123c; }
+    .pillar ul { margin-top: 10px; padding-left: 16px; }
+    .pillar ul li { font-size: 12px; color: var(--text); margin-bottom: 4px; }
+
+    /* PARRILLA */
+    .parrilla-grid { display: grid; grid-template-columns: 100px repeat(5, 1fr); gap: 6px; }
+    .parrilla-header {
+      background: var(--teal-dark);
+      color: white;
+      padding: 10px 8px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .week-label {
+      background: var(--teal-light);
+      padding: 10px 8px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal-dark);
+      display: flex; align-items: center; justify-content: center; text-align: center;
+    }
+    .parrilla-cell {
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 11px;
+      line-height: 1.4;
+      min-height: 90px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .parrilla-cell .tipo {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      width: fit-content;
+      margin-bottom: 2px;
+    }
+    .parrilla-cell .titulo { font-weight: 700; font-size: 11px; }
+    .parrilla-cell .copy { font-size: 10px; color: #475569; }
+
+    .c-nat { background: #f0fdfa; }
+    .c-nat .tipo { background: #99f6e4; color: #0f766e; }
+    .c-exp { background: #fefce8; }
+    .c-exp .tipo { background: #fef08a; color: #854d0e; }
+    .c-vida { background: #f0fdf4; }
+    .c-vida .tipo { background: #bbf7d0; color: #166534; }
+    .c-social { background: #fff1f2; }
+    .c-social .tipo { background: #fecdd3; color: #9f1239; }
+    .c-ads { background: #eff6ff; }
+    .c-ads .tipo { background: #bfdbfe; color: #1e40af; }
+
+    /* BENCHMARK */
+    .comp-table { width: 100%; border-collapse: collapse; }
+    .comp-table th { background: var(--teal-dark); color: white; padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .comp-table th:first-child { border-radius: 8px 0 0 0; }
+    .comp-table th:last-child { border-radius: 0 8px 0 0; }
+    .comp-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 12px; }
+    .comp-table tr:last-child td { border-bottom: none; }
+    .comp-table tr:nth-child(even) td { background: var(--gris); }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 700; }
+    .badge.high { background: #dcfce7; color: #166534; }
+    .badge.med { background: #fef9c3; color: #854d0e; }
+    .badge.low { background: #fee2e2; color: #991b1b; }
+
+    /* FORMAT ROW */
+    .format-row { display: flex; gap: 8px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .format-row:last-child { border-bottom: none; }
+    .format-num { width: 28px; height: 28px; border-radius: 50%; background: var(--teal); color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; }
+    .format-info strong { font-size: 13px; display: block; }
+    .format-info span { font-size: 11px; color: var(--gris-dark); }
+    .format-badge { margin-left: auto; padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 700; flex-shrink: 0; height: fit-content; }
+    .fb { background: #dbeafe; color: #1e40af; }
+    .ig { background: #fce7f3; color: #9d174d; }
+    .both { background: #d1fae5; color: #064e3b; }
+
+    /* TIPS */
+    .tip { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .tip:last-child { border-bottom: none; }
+    .tip-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .tip-text strong { font-size: 12px; display: block; }
+    .tip-text span { font-size: 11px; color: var(--gris-dark); }
+
+    /* KPIs */
+    .kpi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .kpi-item { background: var(--gris); border-radius: 10px; padding: 14px; }
+    .kpi-item .kpi-val { font-size: 20px; font-weight: 800; color: var(--teal-dark); }
+    .kpi-item .kpi-name { font-size: 11px; color: var(--gris-dark); margin-top: 2px; }
+
+    /* FREQ TABLE */
+    .freq-table { width: 100%; border-collapse: collapse; }
+    .freq-table th { background: var(--gris); padding: 8px 12px; text-align: left; font-size: 11px; font-weight: 700; color: var(--gris-dark); text-transform: uppercase; }
+    .freq-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: 12px; }
+    .freq-table tr:last-child td { border-bottom: none; }
+
+    /* AUDIENCIA CARDS */
+    .aud-card {
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .aud-card .aud-icon { font-size: 22px; }
+    .aud-card .aud-name { font-size: 13px; font-weight: 800; }
+    .aud-card .aud-desc { font-size: 11px; color: #475569; }
+    .aud-card .aud-pct { font-size: 20px; font-weight: 900; margin-top: 4px; }
+
+    .footer { text-align: center; padding: 24px; color: #94a3b8; font-size: 11px; }
+
+    @media (max-width: 900px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .parrilla-grid { grid-template-columns: 80px repeat(3, 1fr); }
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div style="position:relative;z-index:1;">
+    <h1>ATLÁNTIDA LODGE <span>·</span> Estrategia de Contenido</h1>
+    <p class="subtitle">Dashboard de Marketing — Instagram &amp; Facebook · Julio 2026</p>
+    <div style="opacity:0.7;font-size:12px;margin-top:6px;">📍 Cahuita, Limón · Costa Rica · Caribe Sur</div>
+    <div class="header-meta">
+      <span class="tag">🌴 Caribe Costarricense</span>
+      <span class="tag">🐠 Frente a Playa Negra</span>
+      <span class="tag">🌿 Selva + Mar</span>
+      <span class="tag green">♻️ Ecoturismo</span>
+      <span class="tag gold">🍹 Restaurante & Bar</span>
+      <span class="tag coral">💎 Experiencia Boutique</span>
+      <span class="tag">🏊 Pool + Gym + Spa</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- STATS MERCADO -->
+  <div class="section-label">📊 Contexto del Mercado — Turismo Costa Rica 2026</div>
+  <div class="grid-4" style="margin-bottom:20px;">
+    <div class="stat-card">
+      <div class="stat-num">3M+</div>
+      <div class="stat-label">Turistas internacionales/año en Costa Rica</div>
+      <div class="stat-sub">Crecimiento sostenido post-pandemia</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num gold">83%</div>
+      <div class="stat-label">De viajeros valoran el turismo sostenible</div>
+      <div class="stat-sub">Booking.com 2025 — tendencia creciente</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num green">60%</div>
+      <div class="stat-label">Más engagement con micro-influencers vs macro</div>
+      <div class="stat-sub">Clave para lodges boutique</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num blue">#1</div>
+      <div class="stat-label">Reels: formato con mayor alcance orgánico para hoteles en 2026</div>
+      <div class="stat-sub">Supera fotos y carruseles en hospitality</div>
+    </div>
+  </div>
+
+  <!-- BRAND + AUDIENCES -->
+  <div class="grid-2" style="margin-bottom:20px;">
+
+    <div class="card">
+      <div class="card-title"><span>🏝️</span> Perfil de Marca — ATLÁNTIDA LODGE</div>
+      <div class="brand-row">
+        <div class="brand-icon" style="background:#f0fdfa;">🎯</div>
+        <div class="brand-info">
+          <strong>Posicionamiento</strong>
+          <span>"Caribbean calm, tropical nature and timeless comfort" — retiro tropical donde el Caribe, la selva y la elegancia relajada conviven.</span>
+        </div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-icon" style="background:#fefce8;">📍</div>
+        <div class="brand-info">
+          <strong>Ubicación estratégica</strong>
+          <span>Cahuita, Limón, CR — entre la selva tropical y Playa Negra. A pasos del Parque Nacional Cahuita (arrecifes, perezosos, monos, pizotes, aves exóticas).</span>
+        </div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-icon" style="background:#f0fdf4;">🏨</div>
+        <div class="brand-info">
+          <strong>Amenidades clave</strong>
+          <span>Habitaciones Deluxe · Restaurante & Bar con ingredientes locales · Cócteles tropicales · Pool estilo Caribe · Gym · Salón de eventos · Ecotours</span>
+        </div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-icon" style="background:#fff1f2;">🦥</div>
+        <div class="brand-info">
+          <strong>Activo de contenido #1</strong>
+          <span>La naturaleza que rodea el lodge (perezosos, monos congo, tucanes, arrecifes de coral, Playa Negra) es el diferenciador visual más poderoso vs. competidores.</span>
+        </div>
+      </div>
+      <div class="brand-row">
+        <div class="brand-icon" style="background:#eff6ff;">✨</div>
+        <div class="brand-info">
+          <strong>Diferenciador competitivo</strong>
+          <span>Mezcla única de acceso a naturaleza salvaje + comodidad boutique + gastronomía local + cultura afrocaribeña auténtica de Cahuita.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>👤</span> Audiencias Objetivo — Quiénes Reservan</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="aud-card" style="background:#f0fdfa;">
+          <span class="aud-icon">✈️</span>
+          <span class="aud-name">Viajero internacional</span>
+          <span class="aud-desc">EEUU, Canadá, Europa. Busca naturaleza auténtica + comfort. Planifica 2–4 meses antes.</span>
+          <span class="aud-pct" style="color:#0d9488;">40%</span>
+        </div>
+        <div class="aud-card" style="background:#fefce8;">
+          <span class="aud-icon">💑</span>
+          <span class="aud-name">Pareja / Luna de miel</span>
+          <span class="aud-desc">Romance caribeño, desconexión, experiencias únicas. Alta disposición a pagar premium.</span>
+          <span class="aud-pct" style="color:#a16207;">25%</span>
+        </div>
+        <div class="aud-card" style="background:#f0fdf4;">
+          <span class="aud-icon">🇨🇷</span>
+          <span class="aud-name">Tico que viaja</span>
+          <span class="aud-desc">Fines de semana largos, feriados, familia. San José–Cahuita es destino interno popular.</span>
+          <span class="aud-pct" style="color:#15803d;">20%</span>
+        </div>
+        <div class="aud-card" style="background:#fff1f2;">
+          <span class="aud-icon">💻</span>
+          <span class="aud-name">Nómada digital / solo traveler</span>
+          <span class="aud-desc">Busca WiFi + naturaleza. Estancias más largas. Muy activo en redes, genera UGC.</span>
+          <span class="aud-pct" style="color:#be123c;">15%</span>
+        </div>
+      </div>
+      <div style="margin-top:14px;padding:12px;background:#f0fdfa;border-radius:10px;border-left:3px solid #0d9488;">
+        <strong style="font-size:12px;color:#0f766e;">🔑 Insight clave de audiencia:</strong>
+        <p style="font-size:11px;color:#134e4a;margin-top:4px;">El viajero moderno decide su alojamiento primero por las imágenes/videos que ve en Instagram. Antes de revisar precio o reseñas, ya tomó la decisión emocional. El contenido visual ES el funnel de ventas.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BENCHMARK -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-title"><span>⚔️</span> Benchmark Competitivo — Lodges y Hoteles Caribe Sur Costa Rica</div>
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Competidor</th>
+          <th>Tipo</th>
+          <th>Fortaleza</th>
+          <th>Redes Sociales</th>
+          <th>Contenido que más usa</th>
+          <th>Debilidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Tree House Lodge</strong></td>
+          <td>Ecolodge lujo</td>
+          <td>10 acres frente al mar, Puerto Viejo</td>
+          <td><span class="badge high">Alta</span></td>
+          <td>Naturaleza extrema, lujo selvático</td>
+          <td>Precio muy alto, limita audiencia</td>
+        </tr>
+        <tr>
+          <td><strong>Aguas Claras (Cayuga)</strong></td>
+          <td>Boutique lujo</td>
+          <td>Colección premium, sostenibilidad 5★</td>
+          <td><span class="badge high">Alta</span></td>
+          <td>Estética editorial, lifestyle</td>
+          <td>Poco contenido de destino/naturaleza</td>
+        </tr>
+        <tr>
+          <td><strong>Le Cameleon</strong></td>
+          <td>Boutique playa</td>
+          <td>Diseño, playa privada Puerto Viejo</td>
+          <td><span class="badge med">Media</span></td>
+          <td>Fotos de piscina, estilo</td>
+          <td>Sin contenido de vida silvestre ni local</td>
+        </tr>
+        <tr>
+          <td><strong>La Shawandha Ecolodge</strong></td>
+          <td>Ecolodge</td>
+          <td>14 chalets, mejor valorado TripAdvisor</td>
+          <td><span class="badge med">Media</span></td>
+          <td>Fotos de jardín, descanso</td>
+          <td>Producción visual baja, sin Reels</td>
+        </tr>
+        <tr>
+          <td><strong>Cariblue Beach &amp; Jungle</strong></td>
+          <td>Resort</td>
+          <td>Playa + selva, amplio resort</td>
+          <td><span class="badge med">Media</span></td>
+          <td>Fotos de playa, agua</td>
+          <td>Contenido genérico, sin diferenciación</td>
+        </tr>
+        <tr>
+          <td><strong>Namuwoki Lodge</strong></td>
+          <td>Ecolodge</td>
+          <td>13 bungalós, vida silvestre Manzanillo</td>
+          <td><span class="badge low">Baja</span></td>
+          <td>Fotos estáticas de fauna</td>
+          <td>Sin estrategia de contenido activa</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:14px;padding:12px;background:#fefce8;border-radius:10px;border-left:3px solid #d4a843;">
+      <strong style="font-size:12px;color:#a16207;">🔥 Gap de oportunidad para Atlántida Lodge:</strong>
+      <p style="font-size:11px;color:#78350f;margin-top:4px;">Ningún competidor combina consistentemente: <strong>vida silvestre real en video</strong> + <strong>experiencia gastronómica local</strong> + <strong>cultura afrocaribeña auténtica</strong> + <strong>testimonio de huéspedes</strong>. El primero que narre el destino completo (no solo el hotel) dominará el orgánico. Atlántida puede ser esa marca.</p>
+    </div>
+  </div>
+
+  <!-- PILLARS -->
+  <div class="section-label">🏛️ Los 4 Pilares de Contenido</div>
+  <div class="grid-4" style="margin-bottom:20px;">
+    <div class="pillar p1">
+      <div class="pillar-icon">🌿</div>
+      <div class="pillar-name">NATURALEZA & DESTINO</div>
+      <div class="pillar-pct">35%</div>
+      <div style="font-size:11px;color:#0f766e;font-weight:600;margin-bottom:6px;">El más viral — el destino vende el lodge</div>
+      <ul>
+        <li>Perezosos, monos, tucanes en el lodge</li>
+        <li>Parque Nacional Cahuita</li>
+        <li>Snorkel en arrecife de coral</li>
+        <li>Playa Negra amanecer y atardecer</li>
+        <li>Selva tropical en la madrugada</li>
+        <li>Lluvia caribeña (ASMR mood)</li>
+        <li>Biodiversidad de Limón</li>
+      </ul>
+    </div>
+    <div class="pillar p2">
+      <div class="pillar-icon">🍹</div>
+      <div class="pillar-name">EXPERIENCIA EN EL LODGE</div>
+      <div class="pillar-pct">30%</div>
+      <div style="font-size:11px;color:#a16207;font-weight:600;margin-bottom:6px;">Convierte el deseo en reserva</div>
+      <ul>
+        <li>Pool con vista a la naturaleza</li>
+        <li>Platos del restaurante (food porn)</li>
+        <li>Cócteles tropicales en el bar</li>
+        <li>Habitaciones Deluxe (detalles, texturas)</li>
+        <li>Tours y ecotours disponibles</li>
+        <li>Spa / relajación / desconexión</li>
+        <li>Eventos especiales y celebraciones</li>
+      </ul>
+    </div>
+    <div class="pillar p3">
+      <div class="pillar-icon">🌺</div>
+      <div class="pillar-name">VIDA CARIBEÑA LOCAL</div>
+      <div class="pillar-pct">20%</div>
+      <div style="font-size:11px;color:#15803d;font-weight:600;margin-bottom:6px;">Humaniza y diferencia auténticamente</div>
+      <ul>
+        <li>Cultura afrocaribeña de Cahuita</li>
+        <li>Mercado local, artesanías</li>
+        <li>Música reggae y calypso</li>
+        <li>Comunidad local del pueblo</li>
+        <li>Gastronomía caribeña (rice & beans, patacones)</li>
+        <li>Festividades y eventos de Cahuita</li>
+        <li>Equipo del lodge: sus historias</li>
+      </ul>
+    </div>
+    <div class="pillar p4">
+      <div class="pillar-icon">⭐</div>
+      <div class="pillar-name">PRUEBA SOCIAL & UGC</div>
+      <div class="pillar-pct">15%</div>
+      <div style="font-size:11px;color:#be123c;font-weight:600;margin-bottom:6px;">El pilar que más convierte a reserva</div>
+      <ul>
+        <li>Reseñas reales de huéspedes</li>
+        <li>Fotos/videos de huéspedes reposteados</li>
+        <li>Influencer stays con contenido propio</li>
+        <li>Testimonios en video (experiencia)</li>
+        <li>Rating Expedia, Booking, TripAdvisor</li>
+        <li>"Este fue el mejor viaje de mi vida"</li>
+        <li>Parejas, familias, grupos felices</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PARRILLA -->
+  <div class="section-label">📅 Parrilla Estratégica — Mes Tipo (20 piezas/mes)</div>
+  <div class="card" style="margin-bottom:20px; overflow-x:auto;">
+    <div class="card-title"><span>🗓️</span> Calendario de Contenido Mensual · Instagram + Facebook</div>
+    <div class="parrilla-grid" style="min-width:720px;">
+      <div class="parrilla-header">Semana</div>
+      <div class="parrilla-header">Lunes</div>
+      <div class="parrilla-header">Martes</div>
+      <div class="parrilla-header">Miércoles</div>
+      <div class="parrilla-header">Jueves</div>
+      <div class="parrilla-header">Viernes</div>
+
+      <!-- SEM 1 -->
+      <div class="week-label">SEM 1<br/><small>Naturaleza</small></div>
+      <div class="parrilla-cell c-nat">
+        <span class="tipo">Naturaleza</span>
+        <span class="titulo">🎬 Reel: Wildlife Morning</span>
+        <span class="copy">"Despierta con perezosos en Atlántida Lodge" — video amanecer con fauna real del lodge. Hook supremo.</span>
+      </div>
+      <div class="parrilla-cell c-exp">
+        <span class="tipo">Experiencia</span>
+        <span class="titulo">📸 Carrusel: Tour por el lodge</span>
+        <span class="copy">8 slides: habitación → pool → restaurante → bar → jardín → playa. El hotel completo en un carrusel.</span>
+      </div>
+      <div class="parrilla-cell c-nat">
+        <span class="tipo">Naturaleza</span>
+        <span class="titulo">🎬 Reel: Parque Nacional</span>
+        <span class="copy">"A 5 minutos del lodge: el arrecife de coral más impresionante de Costa Rica" — snorkel en Cahuita NP</span>
+      </div>
+      <div class="parrilla-cell c-social">
+        <span class="tipo">Prueba Social</span>
+        <span class="titulo">⭐ Repost UGC huésped</span>
+        <span class="copy">Foto/video de un huésped con su testimonio como caption. "Este lugar cambió mi forma de viajar"</span>
+      </div>
+      <div class="parrilla-cell c-ads">
+        <span class="tipo">Anuncio</span>
+        <span class="titulo">🎯 Ad: Oferta escapada</span>
+        <span class="copy">"Escápate este fin de semana — 2 noches en el Caribe incluye desayuno" + CTA reservar directo</span>
+      </div>
+
+      <!-- SEM 2 -->
+      <div class="week-label">SEM 2<br/><small>Experiencia</small></div>
+      <div class="parrilla-cell c-exp">
+        <span class="tipo">Experiencia</span>
+        <span class="titulo">🎬 Reel: Food & Cocktails</span>
+        <span class="copy">"Así se ve una cena en el Caribe" — food porn del restaurante + cóctel tropical al atardecer en el bar</span>
+      </div>
+      <div class="parrilla-cell c-nat">
+        <span class="tipo">Naturaleza</span>
+        <span class="titulo">📸 Post: Amanecer Playa Negra</span>
+        <span class="copy">Foto editorial del amanecer en Playa Negra, frente al lodge. "Tu mañana en el paraíso"</span>
+      </div>
+      <div class="parrilla-cell c-vida">
+        <span class="tipo">Vida Caribeña</span>
+        <span class="titulo">🎬 Reel: Cultura Cahuita</span>
+        <span class="copy">"El pueblo que no conocías en Costa Rica" — calles, música, gente, gastronomía local de Cahuita</span>
+      </div>
+      <div class="parrilla-cell c-exp">
+        <span class="tipo">Experiencia</span>
+        <span class="titulo">📊 Carrusel: Pool Day</span>
+        <span class="copy">"Un día perfecto en Atlántida" — mañana en pool, tarde en playa, noche en bar. Secuencia de experiencia.</span>
+      </div>
+      <div class="parrilla-cell c-ads">
+        <span class="tipo">Anuncio</span>
+        <span class="titulo">🎯 Ad: Luna de miel</span>
+        <span class="copy">"El Caribe que soñaron juntos" — video romántico + CTA WhatsApp para paquete pareja personalizado</span>
+      </div>
+
+      <!-- SEM 3 -->
+      <div class="week-label">SEM 3<br/><small>Conversión</small></div>
+      <div class="parrilla-cell c-social">
+        <span class="tipo">Prueba Social</span>
+        <span class="titulo">🎬 Reel: Testimonio huésped</span>
+        <span class="copy">Video de 30 seg: huésped real hablando de su experiencia. El formato más convertidor para reservas.</span>
+      </div>
+      <div class="parrilla-cell c-nat">
+        <span class="tipo">Naturaleza</span>
+        <span class="titulo">📸 Post: Fauna nocturna</span>
+        <span class="copy">"¿Sabes qué vive en los jardines de Atlántida de noche?" — rana de ojos rojos, mapaches, luciérnagas</span>
+      </div>
+      <div class="parrilla-cell c-exp">
+        <span class="tipo">Experiencia</span>
+        <span class="titulo">🎬 Reel: Room Tour Deluxe</span>
+        <span class="copy">Tour completo de habitación Deluxe — texturas, detalles, vistas, sonido de la naturaleza afuera</span>
+      </div>
+      <div class="parrilla-cell c-vida">
+        <span class="tipo">Vida Caribeña</span>
+        <span class="titulo">📊 Carrusel: "Por qué Cahuita"</span>
+        <span class="copy">"5 razones para elegir Cahuita en tu próximo viaje a Costa Rica" — guía de destino con Atlántida como base</span>
+      </div>
+      <div class="parrilla-cell c-ads">
+        <span class="tipo">Anuncio</span>
+        <span class="titulo">🎯 Ad: Retargeting</span>
+        <span class="copy">"Todavía quedan habitaciones disponibles" — para quienes visitaron atlantidalodge.com en los últimos 30 días</span>
+      </div>
+
+      <!-- SEM 4 -->
+      <div class="week-label">SEM 4<br/><small>Comunidad</small></div>
+      <div class="parrilla-cell c-nat">
+        <span class="tipo">Naturaleza</span>
+        <span class="titulo">🎬 Reel: ASMR Selva/Lluvia</span>
+        <span class="copy">"Lluvia caribeña desde nuestra terraza" — ASMR visual y sonoro. Altísimo potencial de guardado y compartido.</span>
+      </div>
+      <div class="parrilla-cell c-vida">
+        <span class="tipo">Vida Caribeña</span>
+        <span class="titulo">👨‍🍳 Post: Equipo del lodge</span>
+        <span class="copy">Historia de un cocinero local o guía de ecotur. "Conoce a las personas detrás de tu experiencia perfecta"</span>
+      </div>
+      <div class="parrilla-cell c-social">
+        <span class="tipo">Prueba Social</span>
+        <span class="titulo">⭐ Carrusel: Reseñas top</span>
+        <span class="copy">Las 5 mejores reseñas de Booking/TripAdvisor en formato visual. "Lo que dicen nuestros huéspedes"</span>
+      </div>
+      <div class="parrilla-cell c-exp">
+        <span class="tipo">Experiencia</span>
+        <span class="titulo">🎬 Reel: Sunset ritual</span>
+        <span class="copy">"La mejor hora del día en Atlántida" — cóctel + atardecer + piscina + naturaleza. Pura vida distilled.</span>
+      </div>
+      <div class="parrilla-cell c-vida">
+        <span class="tipo">Vida Caribeña</span>
+        <span class="titulo">🌺 Post: Efeméride/Evento</span>
+        <span class="copy">Evento o celebración local de Cahuita, actividades de temporada, o tip del mes para viajeros</span>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">
+      <div style="display:flex;align-items:center;gap:6px;"><div style="width:12px;height:12px;border-radius:3px;background:#99f6e4;"></div><span style="font-size:11px;">Naturaleza & Destino</span></div>
+      <div style="display:flex;align-items:center;gap:6px;"><div style="width:12px;height:12px;border-radius:3px;background:#fef08a;"></div><span style="font-size:11px;">Experiencia en el Lodge</span></div>
+      <div style="display:flex;align-items:center;gap:6px;"><div style="width:12px;height:12px;border-radius:3px;background:#bbf7d0;"></div><span style="font-size:11px;">Vida Caribeña Local</span></div>
+      <div style="display:flex;align-items:center;gap:6px;"><div style="width:12px;height:12px;border-radius:3px;background:#fecdd3;"></div><span style="font-size:11px;">Prueba Social & UGC</span></div>
+      <div style="display:flex;align-items:center;gap:6px;"><div style="width:12px;height:12px;border-radius:3px;background:#bfdbfe;"></div><span style="font-size:11px;">Anuncio Pagado</span></div>
+    </div>
+  </div>
+
+  <!-- FREQUENCY + AD FORMATS -->
+  <div class="grid-2" style="margin-bottom:20px;">
+
+    <div class="card">
+      <div class="card-title"><span>📡</span> Frecuencia de Publicación Recomendada</div>
+      <table class="freq-table">
+        <thead><tr><th>Formato</th><th>Plataforma</th><th>Frecuencia</th><th>Prioridad</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>🎬 Reels de naturaleza/experiencia</td>
+            <td>Instagram</td>
+            <td><strong>4–5 / semana</strong></td>
+            <td><span class="badge high">MÁXIMA</span></td>
+          </tr>
+          <tr>
+            <td>📸 Carrusel (tour, guía, top)</td>
+            <td>IG + FB</td>
+            <td><strong>2–3 / semana</strong></td>
+            <td><span class="badge high">Alta</span></td>
+          </tr>
+          <tr>
+            <td>📲 Stories (polls, preguntas, BTS)</td>
+            <td>Instagram</td>
+            <td><strong>7 / semana (diario)</strong></td>
+            <td><span class="badge high">Alta</span></td>
+          </tr>
+          <tr>
+            <td>🖼️ Post imagen editorial</td>
+            <td>Facebook</td>
+            <td><strong>3 / semana</strong></td>
+            <td><span class="badge med">Media</span></td>
+          </tr>
+          <tr>
+            <td>🎞️ Video experiencia larga</td>
+            <td>Facebook</td>
+            <td><strong>1 / semana</strong></td>
+            <td><span class="badge med">Media</span></td>
+          </tr>
+          <tr>
+            <td>🎯 Anuncios Meta Ads</td>
+            <td>FB + IG</td>
+            <td><strong>2–3 creativos activos</strong></td>
+            <td><span class="badge high">Alta</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:14px;padding:12px;background:#f0fdfa;border-radius:10px;">
+        <strong style="font-size:12px;color:#0d9488;">📌 Total mensual recomendado:</strong>
+        <p style="font-size:11px;color:#134e4a;margin-top:4px;"><strong>20 piezas feed</strong> + <strong>28–35 Stories</strong> + <strong>3 creativos de ads activos</strong> = ~55 activos/mes</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🎯</span> Top 5 Formatos de Anuncio que Más Convierten para Lodges</div>
+      <div class="format-row">
+        <div class="format-num">1</div>
+        <div class="format-info">
+          <strong>Video experiencia completa (30–45 seg)</strong>
+          <span>Secuencia: amanecer → fauna → desayuno → pool → playa → cóctel al atardecer → cena. El huésped vive el viaje antes de reservar. Hook: "Así se ve un día perfecto en el Caribe costarricense".</span>
+        </div>
+        <span class="format-badge both">FB+IG</span>
+      </div>
+      <div class="format-row">
+        <div class="format-num">2</div>
+        <div class="format-info">
+          <strong>Click-to-WhatsApp con oferta de temporada</strong>
+          <span>"Solo este mes: 3 noches con desayuno y ecotour incluido — escríbenos para reservar". Muy efectivo para CR. El asesor personaliza y cierra en minutos.</span>
+        </div>
+        <span class="format-badge both">FB+IG</span>
+      </div>
+      <div class="format-row">
+        <div class="format-num">3</div>
+        <div class="format-info">
+          <strong>Testimonio en video de huésped real</strong>
+          <span>30 seg: huésped hablando de su experiencia (fauna, comida, descanso). "Whitelisting" de contenido influencer = 20–50% mejor desempeño que ads de marca propia.</span>
+        </div>
+        <span class="format-badge ig">IG</span>
+      </div>
+      <div class="format-row">
+        <div class="format-num">4</div>
+        <div class="format-info">
+          <strong>Retargeting "Todavía hay lugar"</strong>
+          <span>Para visitantes recientes del sitio web. "Viste Atlántida Lodge — todavía tenemos habitaciones disponibles para [mes]". Genera urgencia sin ser agresivo.</span>
+        </div>
+        <span class="format-badge fb">FB</span>
+      </div>
+      <div class="format-row">
+        <div class="format-num">5</div>
+        <div class="format-info">
+          <strong>Ad de fauna / naturaleza + CTA suave</strong>
+          <span>Video de perezoso o tucán en el lodge, al final: "Este es nuestro vecino. El tuyo por unos días. Reserva en Atlántida Lodge". El contenido emocional convierte más que el promocional.</span>
+        </div>
+        <span class="format-badge both">FB+IG</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORGANICO + PAGADO -->
+  <div class="grid-2" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-title"><span>🌱</span> Qué Funciona — Contenido Orgánico para Lodges y Ecohoteles</div>
+      <div class="tip">
+        <span class="tip-icon">🦥</span>
+        <div class="tip-text">
+          <strong>La fauna es el contenido más viral del nicho turístico</strong>
+          <span>Un video de 15 segundos de un perezoso en el jardín del lodge puede alcanzar 500K+ vistas orgánicas. No hace falta producción costosa — solo el celular y la naturaleza que ya tienen.</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🌅</span>
+        <div class="tip-text">
+          <strong>Amanecer y atardecer = contenido evergreen de alto rendimiento</strong>
+          <span>Las fotos y videos del sol sobre Playa Negra o la selva tienen alto engagement constante. Son los posts más guardados y compartidos en cuentas de hoteles/lodges boutique.</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🎵</span>
+        <div class="tip-text">
+          <strong>ASMR y sonidos de naturaleza enganchan y generan guardados</strong>
+          <span>Lluvia en la selva, río, canto de pájaros, olas. Sin narración, solo sonido + imagen. El algoritmo premia los videos con alto tiempo de visualización — este formato lo logra.</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">📍</span>
+        <div class="tip-text">
+          <strong>Narrar el DESTINO vende más que narrar el hotel</strong>
+          <span>"Cahuita: lo que nadie te dice de este pueblo" o "Por qué este rincón de Costa Rica te cambia" — el lodge aparece como el lugar natural donde quedarse para vivirlo.</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🤳</span>
+        <div class="tip-text">
+          <strong>UGC + influencer stays = el contenido más barato y efectivo</strong>
+          <span>Invitar 1–2 micro-influencers de viajes/nature por mes (5K–50K seguidores) a cambio de estadía. Generan contenido auténtico que convierte 60% más que el contenido de marca.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>💰</span> Qué Funciona — Meta Ads para Hoteles y Lodges Boutique</div>
+      <div class="tip">
+        <span class="tip-icon">🎬</span>
+        <div class="tip-text">
+          <strong>Reels verticales 30 seg son el formato #1 de ads en hospitality</strong>
+          <span>Superan a las imágenes estáticas en un 60% de CTR para hoteles. El viajero necesita VER la experiencia para animarse a reservar. Una foto no basta.</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🎯</span>
+        <div class="tip-text">
+          <strong>Segmentación por audiencias de viaje e intereses</strong>
+          <span>Intereses: Costa Rica, ecoturismo, naturaleza, viajes de aventura, playa + comportamiento: "viajero frecuente", "viajero internacional". Para ticos: residentes CR + interés en playa y fines de semana.</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">⏰</span>
+        <div class="tip-text">
+          <strong>Temporada alta = aumentar presupuesto ads 2–3 semanas antes</strong>
+          <span>Diciembre–Enero y Julio–Agosto son peaks de reservas para el Caribe de CR. Subir presupuesto 2–3 semanas antes captura a quienes aún planifican. No esperar hasta la semana del viaje.</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">🔁</span>
+        <div class="tip-text">
+          <strong>Whitelist de influencers = ads que no parecen ads</strong>
+          <span>Usar el contenido de un influencer que ya se quedó en el lodge como anuncio pagado (whitelisting). Performa 20–50% mejor que los anuncios de la cuenta oficial de la marca.</span>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="tip-icon">📲</span>
+        <div class="tip-text">
+          <strong>WhatsApp Business + Pixel = embudo completo</strong>
+          <span>Ad → Click to WhatsApp → consulta con asesor → cierre. Para lodges boutique con reservas personalizadas, WhatsApp tiene la tasa de conversión más alta de cualquier canal.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="section-label">📈 KPIs a Medir Mensualmente</div>
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-title"><span>📐</span> Indicadores Clave de Desempeño — Lodge Boutique / Ecoturismo</div>
+    <div class="kpi-grid">
+      <div class="kpi-item">
+        <div class="kpi-val">≥ 4%</div>
+        <div class="kpi-name">Engagement Rate Instagram (meta hospitality)</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">≥ 2%</div>
+        <div class="kpi-name">CTR promedio anuncios Meta para lodges</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">≤ $12</div>
+        <div class="kpi-name">CPL (Costo por consulta/lead) Meta Ads</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">+20%</div>
+        <div class="kpi-name">Crecimiento seguidores mensual (con reels fauna)</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">≥ 30%</div>
+        <div class="kpi-name">% reservas directas (vs. OTAs) meta a 6 meses</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">8–15</div>
+        <div class="kpi-name">UGC posts de huéspedes reales por mes</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">≥ 35%</div>
+        <div class="kpi-name">Open rate Stories (primeras 3)</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">2–3x</div>
+        <div class="kpi-name">ROAS mínimo en campañas de conversión</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">4.5★</div>
+        <div class="kpi-name">Rating promedio TripAdvisor / Booking (meta)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK WINS + IDENTIDAD -->
+  <div class="grid-2" style="margin-bottom:20px;">
+    <div class="card">
+      <div class="card-title"><span>⚡</span> Quick Wins — Primeras 4 Semanas</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:#f0fdfa;border-radius:8px;border-left:3px solid #0d9488;">
+          <strong style="color:#0d9488;flex-shrink:0;">Sem 1</strong>
+          <span style="font-size:12px;">Optimizar bio: "🌴 Cahuita, Costa Rica 🌊 Selva + Caribe en un mismo lugar 🦥 Fauna, piscina, restaurante & bar ↓ Reserva directo (link Booking o WhatsApp)"</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:#fefce8;border-radius:8px;border-left:3px solid #d4a843;">
+          <strong style="color:#a16207;flex-shrink:0;">Sem 2</strong>
+          <span style="font-size:12px;">Grabar 3 Reels de naturaleza con el celular: (1) fauna en el jardín, (2) vista desde el pool hacia la selva, (3) amanecer en Playa Negra. Sin producción costosa — la naturaleza hace el trabajo.</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:#f0fdf4;border-radius:8px;border-left:3px solid #15803d;">
+          <strong style="color:#15803d;flex-shrink:0;">Sem 3</strong>
+          <span style="font-size:12px;">Lanzar 1 campaña Meta Ads con el mejor reel de experiencia: video pool + comida + fauna. Segmentar a viajeros internacionales y ticos. Presupuesto inicial $15–20/día. CTA: WhatsApp o reserva directa.</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:#fff1f2;border-radius:8px;border-left:3px solid #e11d48;">
+          <strong style="color:#be123c;flex-shrink:0;">Sem 4</strong>
+          <span style="font-size:12px;">Invitar a un micro-influencer de viajes o naturaleza en CR a hacer un stay a cambio de contenido. Los videos y fotos que genere serán activos de contenido + potenciales anuncios (whitelist).</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🎨</span> Identidad Visual y Tono de Comunicación</div>
+      <div style="margin-bottom:14px;">
+        <strong style="font-size:12px;display:block;margin-bottom:8px;">🎨 Paleta de colores — Inspirada en el Caribe</strong>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <div style="padding:8px 14px;border-radius:8px;background:#0f766e;color:white;font-size:11px;font-weight:700;">Teal #0F766E</div>
+          <div style="padding:8px 14px;border-radius:8px;background:#065f46;color:white;font-size:11px;font-weight:700;">Selva #065F46</div>
+          <div style="padding:8px 14px;border-radius:8px;background:#d4a843;color:#1f2937;font-size:11px;font-weight:700;">Arena #D4A843</div>
+          <div style="padding:8px 14px;border-radius:8px;background:#f0fdfa;color:#134e4a;border:1px solid #99f6e4;font-size:11px;font-weight:700;">Menta #F0FDFA</div>
+          <div style="padding:8px 14px;border-radius:8px;background:#7c3aed;color:white;font-size:11px;font-weight:700;">Atardecer #7C3AED</div>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;">
+        <strong style="font-size:12px;display:block;margin-bottom:6px;">💬 Tono de comunicación</strong>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+          <div style="padding:8px;background:#f0fdf4;border-radius:8px;font-size:11px;">✅ <strong>Poético y evocador</strong> — que duela no estar ahí</div>
+          <div style="padding:8px;background:#f0fdf4;border-radius:8px;font-size:11px;">✅ <strong>Sensorial</strong> — colores, sonidos, sabores, temperatura</div>
+          <div style="padding:8px;background:#f0fdf4;border-radius:8px;font-size:11px;">✅ <strong>PURA VIDA auténtico</strong> — no forzado ni turístico</div>
+          <div style="padding:8px;background:#f0fdf4;border-radius:8px;font-size:11px;">✅ <strong>Invitación, no venta</strong> — "Esto te espera" no "Compra ya"</div>
+          <div style="padding:8px;background:#fee2e2;border-radius:8px;font-size:11px;">❌ <strong>Promo agresivo</strong> ("oferta", "descuento", "¡compra!")</div>
+          <div style="padding:8px;background:#fee2e2;border-radius:8px;font-size:11px;">❌ <strong>Corporativo frío</strong> — stock photos, renders</div>
+        </div>
+      </div>
+      <div>
+        <strong style="font-size:12px;display:block;margin-bottom:6px;">📌 Hashtags estratégicos</strong>
+        <p style="font-size:11px;color:#475569;line-height:1.8;">
+          #CahubitaCostaRica #CaribbeanCostaRica #EcolodgeCR #PURAVIDAlife #CostaRicaLovers #PlaYaNegraCostaRica #NatureLovers #EcoturismoCR #CaribbeanTravel #AtlantidaLodge #CaribeSurCR #CostaRicaWildlife #TravelCostaRica #SustainableTravel
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRESUPUESTO -->
+  <div class="section-label">💵 Presupuesto Mensual Sugerido — Meta Ads</div>
+  <div class="grid-3" style="margin-bottom:20px;">
+    <div style="padding:20px;background:#f0fdfa;border-radius:14px;border:2px solid #5eead4;">
+      <div style="font-size:13px;font-weight:800;color:#0d9488;margin-bottom:4px;">🌱 STARTER</div>
+      <div style="font-size:32px;font-weight:900;color:#0d9488;">$400/mes</div>
+      <div style="font-size:11px;color:#134e4a;margin-top:10px;line-height:1.8;">
+        • $250 — Campaña experiencia/awareness<br/>
+        • $100 — Retargeting visitantes sitio web<br/>
+        • $50 — Boost posts de fauna más virales<br/><br/>
+        <strong>Meta: 8–15 consultas/mes</strong><br/>
+        <strong>Reservas esperadas: 4–6</strong><br/>
+        <strong style="color:#0d9488;">Ideal para temporada baja</strong>
+      </div>
+    </div>
+    <div style="padding:20px;background:#fefce8;border-radius:14px;border:2px solid #fde047;">
+      <div style="font-size:13px;font-weight:800;color:#a16207;margin-bottom:4px;">📈 GROWTH</div>
+      <div style="font-size:32px;font-weight:900;color:#a16207;">$800/mes</div>
+      <div style="font-size:11px;color:#78350f;margin-top:10px;line-height:1.8;">
+        • $400 — Campaña principal (viajeros int'l + ticos)<br/>
+        • $200 — Ad pareja / luna de miel<br/>
+        • $150 — Retargeting + whitelist influencer<br/>
+        • $50 — Boost UGC / testimonios<br/><br/>
+        <strong>Meta: 25–40 consultas/mes</strong><br/>
+        <strong>Reservas esperadas: 10–18</strong>
+      </div>
+    </div>
+    <div style="padding:20px;background:#f0fdf4;border-radius:14px;border:2px solid #86efac;">
+      <div style="font-size:13px;font-weight:800;color:#15803d;margin-bottom:4px;">🚀 TEMPORADA ALTA</div>
+      <div style="font-size:32px;font-weight:900;color:#15803d;">$1,500/mes</div>
+      <div style="font-size:11px;color:#166534;margin-top:10px;line-height:1.8;">
+        • $700 — Campaña experiencia + fauna (awareness)<br/>
+        • $350 — Lead gen y conversión directa<br/>
+        • $300 — Retargeting avanzado (LALs)<br/>
+        • $150 — Whitelist influencers activos<br/><br/>
+        <strong>Meta: 60–90 consultas/mes</strong><br/>
+        <strong>Reservas esperadas: 25–40</strong><br/>
+        <strong style="color:#15803d;">Dic–Ene y Jul–Ago</strong>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Dashboard elaborado por IA · ATLÁNTIDA LODGE — Estrategia de Contenido Digital · Julio 2026<br/>
+  Basado en análisis de mercado ecoturismo Caribe Sur Costa Rica, benchmark competitivo y mejores prácticas Meta Ads para hospitality 2026
+</div>
+
+</body>
+</html>
